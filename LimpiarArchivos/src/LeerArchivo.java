@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class LeerArchivo {
 	  public static void main(String args[]) {
-		    leerCarpeta("C:\\Users\\Jessica Sarahi\\Desktop\\respaldo\\qna13\\fechasPlaza");
+		    leerCarpeta("C:\\Users\\JessicaSarahiEspinos\\Desktop\\qna17");
 		  }
 	  
 	  public static void  leerCarpeta (String ruta){
@@ -119,7 +119,7 @@ public class LeerArchivo {
 	    	//"01/04/17"
 	        String fechaSeparada [] = fecha.split("/"); 
 	        StringBuilder fechaChida  = new StringBuilder();
-	        String a�o = "20" +fechaSeparada[2] + "/";
+	        String anio = "20" +fechaSeparada[2] + "/";
 	        fechaChida.append("20"+ fechaSeparada[2] +"/");
 	        fechaChida.append(fechaSeparada[1]+"/");
 	        fechaChida.append(fechaSeparada[0]);
