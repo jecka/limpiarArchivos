@@ -25,36 +25,41 @@ public class LeerArchivo {
 		  System.out.println("Fin");
 		  
 	  }
-	  
-	  public static void leerArchivo(String ruta, String nombreNuevo){
-		    int numLinea=0;
-		    FileWriter fichero = null;
-		    PrintWriter pw = null;
-		    try {
-		      FileReader fr = new FileReader(ruta);
-		      BufferedReader br = new BufferedReader(fr);
-		 
-		      fichero = new FileWriter(nombreNuevo);
-		      pw = new PrintWriter(fichero);		      
-		      String linea;
-		      String lineaNew;
-		      while((linea = br.readLine()) != null){
-		    	  numLinea++;
-		    	  
-		//  lineaNew = linea.replaceAll(" +", " ");
-		 // lineaNew = cambiarFechaNomina(lineaNew);
-		  lineaNew = linea.replaceAll(" ", "");
-		  	lineaNew = cambiarFechaPlazas(lineaNew);     
-		    pw.println(lineaNew);
-		      }
-		      fichero.close();
-		      fr.close();
-		    }
-		    catch(Exception e) {
-		      System.out.println("Excepcion leyendo fichero "+ ruta + ": " + e);
-		    }
-	  }
-	  
+
+	public static void leerArchivo(String ruta, String nombreNuevo){
+		 int numLinea=0;
+		 FileWriter fichero = null;
+		 PrintWriter pw = null;
+		 try {
+		 FileReader fr = new FileReader(ruta);
+		 BufferedReader br = new BufferedReader(fr);
+		 fichero = new FileWriter(nombreNuevo);
+		 pw = new PrintWriter(fichero);
+		 String linea;
+		 String lineaNew;
+		 while((linea = br.readLine()) != null){
+		 numLinea++;
+			lineaNew = linea.replaceAll(" +", " ");
+			lineaNew = lineaNew.replaceAll(" \\|","|");
+			lineaNew = lineaNew.replaceAll("\\| ", "|");
+			lineaNew = lineaNew.replaceAll("^ ", "");
+			lineaNew = lineaNew.replaceAll(" $", "");
+				lineaNew = lineaNew.replaceAll("\n|","");
+				lineaNew = lineaNew.replaceAll("|\r","");
+
+//lineaNew = cambiarFechaNomina(lineaNew);
+// lineaNew = linea.replaceAll(" ", "");
+
+// lineaNew = cambiarFechaPlazas(lineaNew);
+		 pw.println(lineaNew);
+		   }
+		   fichero.close();
+		   fr.close();
+		 }
+		 catch(Exception e) {
+		 System.out.println("Excepcion leyendo fichero "+ ruta + ": " + e);
+		 }
+	 }
 	  
 	  
 	  //para los archivos de ANLPLAza por la ubicacion de los '|'
@@ -66,7 +71,7 @@ public class LeerArchivo {
 	        String cadenaTratada = "";
 	        while (posicion != -1) { //mientras se encuentre el caracter
 	            contador++;           //se cuenta
-	            //se sigue buscando a partir de la posición siguiente a la encontrada
+	            //se sigue buscando a partir de la posiciï¿½n siguiente a la encontrada
 	            posicion = cadena.indexOf(caracter, posicion + 1);
 	            if(contador == 20){//	            	
 	             String fecha = cadena.substring(posicion+1,posicion+9);
@@ -87,7 +92,7 @@ public class LeerArchivo {
 	        String cadenaTratada = "";
 	        while (posicion != -1) { //mientras se encuentre el caracter
 	            contador++;           //se cuenta
-	            //se sigue buscando a partir de la posición siguiente a la encontrada
+	            //se sigue buscando a partir de la posiciï¿½n siguiente a la encontrada
 	            posicion = cadena.indexOf(caracter, posicion + 1);
 	           
 	            if(contador == 13 || contador == 14){
@@ -114,7 +119,7 @@ public class LeerArchivo {
 	    	//"01/04/17"
 	        String fechaSeparada [] = fecha.split("/"); 
 	        StringBuilder fechaChida  = new StringBuilder();
-	        String año = "20" +fechaSeparada[2] + "/";
+	        String aï¿½o = "20" +fechaSeparada[2] + "/";
 	        fechaChida.append("20"+ fechaSeparada[2] +"/");
 	        fechaChida.append(fechaSeparada[1]+"/");
 	        fechaChida.append(fechaSeparada[0]);
